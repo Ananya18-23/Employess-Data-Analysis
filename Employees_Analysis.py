@@ -71,7 +71,7 @@ df.info()
 
 df.isnull().sum()
 
-Insights: distance from Home and and Company Tenure have null value since bith are numerical column we can fill this by medial of the column 
+# Insights: distance from Home and and Company Tenure have null value since bith are numerical column we can fill this by medial of the column 
 # In[10]:
 
 
@@ -96,7 +96,7 @@ df.describe()
 
 
 # # Cheaking the redundent
-Finding the redundent value in each and every column by finding unique values 
+# Finding the redundent value in each and every column by finding unique values 
 # In[13]:
 
 
@@ -161,7 +161,7 @@ for col in cat_cols:
     print(f"{col}: {df[col].unique()}")
     print()
 
-since ordinal data do change karinge encoding se is eya fair ko changr karna padaga nahi to ordinal encoder me problem karaga 
+# since ordinal data do change karinge encoding se is eya fair ko changr karna padaga nahi to ordinal encoder me problem karaga 
 # In[22]:
 
 
@@ -728,7 +728,6 @@ print('Recall:', recall)
 # In[92]:
 
 
-# code from chatgpt
 
 from sklearn.metrics import roc_curve, roc_auc_score
 
@@ -747,7 +746,6 @@ print('AUC Score:', roc_auc_score(y_test, y_pred_prob))
 # In[93]:
 
 
-# chatgpt
 
 # Sensitivity - Specificity tradeoff
 sensitivity = tpr
@@ -762,7 +760,7 @@ print('Optimal Cutoff:', optimal_cutoff)
 # In[94]:
 
 
-# chatgpt
+
 
 y_pred_optimal = (y_pred_prob >= optimal_cutoff).astype(int)
 print(confusion_matrix(y_test, y_pred_optimal))
@@ -772,7 +770,6 @@ print(accuracy_score(y_test, y_pred_optimal))
 # In[95]:
 
 
-# chatgpt
 
 plt.plot(thresholds, sensitivity, label='Sensitivity')
 plt.plot(thresholds, specificity, label='Specificity')
