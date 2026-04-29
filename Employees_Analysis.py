@@ -59,19 +59,23 @@ df.duplicated().sum()
 # In[8]:
 
 
-# checking the DataType of eacha dn every column 
+# checking the DataType of each and every column 
 
 df.info()
 
-# Acoording to this there many colun which have string/Object data type we have to encode for ml model 
+# According to this there are many columns which have string/Object data type, we have to encode for ml model
+
+
 # In[9]:
 
 
-# Cheking the null values 
+# Checking the null values 
 
 df.isnull().sum()
 
-# Insights: distance from Home and and Company Tenure have null value since bith are numerical column we can fill this by medial of the column 
+# Insights: Distance from Home and Company Tenure have null values, since both are numerical columns we can fill this by median of the column
+
+
 # In[10]:
 
 
@@ -84,7 +88,7 @@ df['Company Tenure (In Months)'].fillna(df['Company Tenure (In Months)'].median(
 # In[11]:
 
 
-# checking the reult 
+# checking the result 
 
 df.isnull().sum()
 
@@ -95,12 +99,14 @@ df.isnull().sum()
 df.describe()
 
 
-# # Cheaking the redundent
-# Finding the redundent value in each and every column by finding unique values 
+# # Checking the redundant
+# Finding the redundant value in each and every column by finding unique values 
+
+
 # In[13]:
 
 
-# since we dont employee id in the datset so we can dorp 
+# since we dont need employee id in the dataset so we can drop 
 
 df=df.drop("Employee ID",axis=1)
 
@@ -108,13 +114,13 @@ df=df.drop("Employee ID",axis=1)
 # In[14]:
 
 
-df['Education Level'].unique()  # since spelling errro we have to replace 
+df['Education Level'].unique()  # since spelling error we have to replace 
 
 
 # In[15]:
 
 
-# Data profilling 
+# Data profiling 
 
 # Replace the wrong spelling with right spelling 
 
@@ -161,11 +167,13 @@ for col in cat_cols:
     print(f"{col}: {df[col].unique()}")
     print()
 
-# since ordinal data do change karinge encoding se is eya fair ko changr karna padaga nahi to ordinal encoder me problem karaga 
+# since ordinal data do change karinge encoding se, is 'Fair' ko change karna padega nahi to ordinal encoder me problem karega
+
+
 # In[22]:
 
 
-# Handling redundent vales 
+# Handling redundant values 
 
 df['Work-Life Balance'] = df['Work-Life Balance'].replace('Fair', 'Below Average')
 df['Company Reputation'] = df['Company Reputation'].replace('Fair', 'Poor')
@@ -180,10 +188,11 @@ df.head()
 # In[24]:
 
 
-# According to PDF we are doing trian test split and then apply EDA in taining nad validation data 
+# According to PDF we are doing train test split and then apply EDA on training and validation data 
 
 
 # # Train Test split 
+
 
 # In[25]:
 
@@ -226,6 +235,7 @@ x_test.head()
 
 
 # # Univariate
+
 
 # In[31]:
 
@@ -283,7 +293,8 @@ plt.title('Distribution of Company Tenure (In Months)')
 plt.show()
 
 
-# # Corelation heatmap
+# # Correlation heatmap
+
 
 # In[38]:
 
@@ -316,10 +327,11 @@ plt.show()
 # In[41]:
 
 
-# Allmost balance hai 
+# Almost balance hai 
 
 
-# # bivariate analysis
+# # Bivariate analysis
+
 
 # In[42]:
 
@@ -381,7 +393,7 @@ plt.title("Bar plot of Attrition on the basis of remote work")
 
 
 sns.countplot(train_df,x=y_train,hue='Leadership Opportunities')
-plt.title("Bar plot of Attrition on the basis of Leaership opportunities")
+plt.title("Bar plot of Attrition on the basis of Leadership opportunities")
 
 
 # In[51]:
@@ -428,13 +440,14 @@ plt.title("Bar plot of Attrition on the basis of Marital Status")
 
 # # Feature Engineering
 
+
 # In[57]:
 
 
-# rodeinal encoding for column in which order matters 
+# Ordinal encoding for columns in which order matters 
 
 from sklearn.preprocessing import OrdinalEncoder
-OE =OrdinalEncoder()
+OE = OrdinalEncoder()
 OE
 
 
@@ -479,7 +492,7 @@ x_test.head()
 # In[61]:
 
 
-# level encoding in which order dosent matter 
+# Label encoding for columns in which order does not matter 
 
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
@@ -590,6 +603,7 @@ x_train[num_cols]
 
 
 # # Model Building 
+
 
 # In[75]:
 
@@ -728,7 +742,6 @@ print('Recall:', recall)
 # In[92]:
 
 
-
 from sklearn.metrics import roc_curve, roc_auc_score
 
 y_pred_prob = lr.predict_proba(x_test_rfe)[:,1]
@@ -746,7 +759,6 @@ print('AUC Score:', roc_auc_score(y_test, y_pred_prob))
 # In[93]:
 
 
-
 # Sensitivity - Specificity tradeoff
 sensitivity = tpr
 specificity = 1 - fpr
@@ -760,15 +772,12 @@ print('Optimal Cutoff:', optimal_cutoff)
 # In[94]:
 
 
-
-
 y_pred_optimal = (y_pred_prob >= optimal_cutoff).astype(int)
 print(confusion_matrix(y_test, y_pred_optimal))
 print(accuracy_score(y_test, y_pred_optimal))
 
 
 # In[95]:
-
 
 
 plt.plot(thresholds, sensitivity, label='Sensitivity')
@@ -783,8 +792,6 @@ plt.show()
 # 1. Job Level (Senior) and Remote Work are the strongest predictors of staying.
 # 2. Single Marital Status and High Overtime are the biggest threats to retention.
 # 3. Recommendation: HR should implement a "Work-Life Balance Audit" for Single employees in Mid-level roles, as they show the highest probability of leaving.
+
+
 # In[ ]:
-
-
-
-
