@@ -63,7 +63,7 @@ df.duplicated().sum()
 
 df.info()
 
-Acoording to this there many colun which have string/Object data type we have to encode for ml model 
+# Acoording to this there many colun which have string/Object data type we have to encode for ml model 
 # In[9]:
 
 
