@@ -294,6 +294,8 @@ plt.show()
 
 
 # # Correlation heatmap
+   corr = x_train.corr(numeric_only=True)
+   x_train.corr(numeric_only=True)
 
 
 # In[38]:
